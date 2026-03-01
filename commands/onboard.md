@@ -1,0 +1,25 @@
+---
+name: onboard
+description: Onboard an existing project into the workshop
+argument-hint: "<path-to-project>"
+---
+
+Onboard an existing project into the workshop.
+
+Follow the project-lifecycle skill's "Onboarding an Existing Project" workflow:
+
+1. Validate the path ($1) exists and is accessible
+2. Read the project to understand it:
+   - Look for README.md, CLAUDE.md, package.json, Cargo.toml, or similar docs
+   - Run `git log --oneline -20` in the project dir for recent history
+   - Run `git remote -v` for remote info
+   - Scan file structure for tech stack detection
+3. Derive a project name from the directory name (or ask the user)
+4. Create project directory structure under `~/.open-workshop/projects/<name>/`
+5. Generate `profile.yaml` from findings
+6. Generate initial `status.md` summarizing what was found
+7. Ask the user to define milestones (suggest some based on what was found)
+8. Initialize `ledger.yaml` with a baseline entry
+9. Write `context/last-briefing.md` with onboarding summary
+10. Add to `~/.open-workshop/projects/_manifest.yaml` (with active limit check)
+11. Flag any tools or integrations the project uses that might benefit from a dedicated department

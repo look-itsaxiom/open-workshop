@@ -1,0 +1,9 @@
+{
+  "name": "open-workshop",
+  "description": "Self-organizing AI workshop — project portfolio, department dispatch, engine offloading, and ROI tracking for Claude Code",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chase Skibeness"
+  },
+  "license": "MIT"
+}

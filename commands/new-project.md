@@ -1,0 +1,20 @@
+---
+name: new-project
+description: Create a new project in the workshop
+argument-hint: "[project-name]"
+---
+
+Create a new project in the workshop.
+
+Follow the project-lifecycle skill's "Creating a New Project" workflow:
+
+1. If no name argument provided, ask the user for a project name
+2. Ask about the concept: what is it, what's the goal, what tech stack?
+3. Create the project directory structure under `~/.open-workshop/projects/<name>/`
+4. Write `profile.yaml`, initial `status.md`, `milestones.yaml`, empty `ledger.yaml`
+5. Write initial `context/last-briefing.md`
+6. Add to `~/.open-workshop/projects/_manifest.yaml`
+7. Check active project limit from `~/.open-workshop/config.yaml`
+8. If over limit, present options to the user (backlog the new one, or cool an existing one)
+
+If the user wants to create a corresponding git repo for the project, help them set that up at the path specified in the profile. Otherwise just register the project data in the workshop.

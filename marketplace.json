@@ -1,0 +1,13 @@
+{
+  "name": "open-workshop-marketplace",
+  "owner": "Chase Skibeness",
+  "plugins": [
+    {
+      "name": "open-workshop",
+      "source": {
+        "type": "github",
+        "url": "https://github.com/cskibeness/open-workshop"
+      }
+    }
+  ]
+}
