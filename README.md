@@ -2,66 +2,99 @@
 
 A Claude Code plugin that turns a single session into a self-organizing AI workshop.
 
-## What It Does
+You manage projects. It manages everything else — departments, dispatch, accounting, and the context to make every session productive from the first prompt.
 
-- **Project Portfolio** — Track multiple projects with status, milestones, and accounting
-- **Department Dispatch** — Spawn specialized agents for engineering, design, R&D, or any domain you define
-- **Engine Offloading** — Route tasks to Codex, Gemini, or any external AI CLI to save tokens
-- **Cost Tracking** — Automatic token accounting + milestone-linked ROI analysis
-- **Self-Growing** — Ships with only R&D. You build the departments you need.
+## The Problem
 
-## Installation
+You're juggling multiple projects. Each session starts cold — you re-explain context, re-discover what's blocked, re-orient on priorities. You waste tokens on setup instead of shipping.
+
+## The Solution
+
+Open Workshop gives you a persistent, self-growing studio:
+
+- **Dashboard at startup** — every session opens with your project status, blockers, and next steps
+- **Project lifecycle** — track projects from idea to archive with milestones and context that survives across sessions
+- **Department dispatch** — spawn specialized agents (engineering, design, R&D) with relevant knowledge and tools
+- **Engine offloading** — route tasks to Codex, Gemini, or any external AI CLI when Claude isn't the right tool
+- **Cost tracking** — automatic token accounting + milestone-linked ROI so you know what you're getting for your spend
+- **Self-growing** — ships with only R&D. You build the departments you actually need.
+
+## Quick Start
+
+### Install
 
 ```bash
 # Add the marketplace
-claude /plugin marketplace add https://raw.githubusercontent.com/cskibeness/open-workshop/main/marketplace.json
+claude /plugin marketplace add https://raw.githubusercontent.com/look-itsaxiom/open-workshop/main/marketplace.json
 
 # Install the plugin
 claude /plugin install open-workshop
 ```
 
-## First Run
+### First Run
 
-Start a Claude Code session. The plugin detects it's your first time and walks you through setup:
-
-1. Name your workshop
-2. Set active project limit
-3. Choose execution mode (sub-agents or agent teams)
-4. Detect available external AI engines
-
-## Usage
+Start a Claude Code session. The plugin detects it's your first time and walks you through setup — no config files to write by hand.
 
 ### Commands
 
-| Command | Description |
+| Command | What it does |
 |---------|-------------|
-| `/status` | Show the workshop dashboard |
+| `/status` | Show your workshop dashboard |
 | `/focus <project>` | Deep-dive into a specific project |
-| `/new-project [name]` | Create a new project from scratch |
+| `/new-project` | Start a new project from scratch |
 | `/onboard <path>` | Bring an existing repo into the workshop |
 
-### Key Concepts
+## How It Works
 
-**Projects** go through a lifecycle: active → backlog → archived. Active projects appear on your dashboard. Backlog projects are tracked but quiet.
+### Projects
 
-**Departments** are specialist contexts with knowledge bases and tool catalogs. R&D ships built-in; it can research and create any department you need.
+Projects go through a lifecycle: **active** → **backlog** → **archived**. Active projects appear on your dashboard every session. When you shelve a project, it writes a comprehensive briefing so you can pick it back up months later without losing context.
 
-**Engines** are external AI CLIs that your workshop can delegate work to. Configure them in `~/.open-workshop/engines.yaml`.
+### Departments
 
-**Accounting** tracks what you spend and what you ship. Every task links to a milestone with before/after progress, giving you ROI per project.
+Departments are specialist contexts — a knowledge base and a tool catalog that get injected when you dispatch work. R&D is the only department that ships. It's the stem cell: ask it to research a domain, and it'll create a new department for you.
 
-## Data Location
+```
+"I need an engineering department"
+→ R&D researches tools and practices
+→ Creates ~/.open-workshop/departments/engineering/
+→ Engineering is now available for dispatch
+```
 
-All your data lives in `~/.open-workshop/`. The plugin itself is stateless — you can reinstall it without losing anything.
+### Engine Offloading
+
+Not every task needs Claude. Configure external AI CLIs in `~/.open-workshop/engines.yaml` and the workshop will route appropriate work to them:
+
+```yaml
+engines:
+  - name: gemini
+    command: "gemini -p"
+    strengths: ["research", "analysis", "large context"]
+    cost: "Free (1000 req/day)"
+```
+
+### Accounting
+
+Every piece of work links to a milestone with before/after progress. The `SubagentStop` hook automatically tracks token costs. Together, they answer: "For every dollar spent, how much closer did this project get to shipping?"
+
+## Data
+
+All your data lives in `~/.open-workshop/`. The plugin itself is stateless — reinstall it, update it, whatever. Your projects, departments, and cost history are untouched.
 
 ```
 ~/.open-workshop/
 ├── config.yaml              # workshop settings
 ├── projects/                # project tracking data
+│   ├── _manifest.yaml       # active/backlog/archived lists
+│   └── <project>/           # per-project status, milestones, ledger
 ├── departments/             # your custom departments
 ├── engines.yaml             # external AI engine configs
 └── cost-log.jsonl           # automatic cost tracking
 ```
+
+## Origin
+
+Open Workshop was extracted from [Dream Factory](https://github.com/look-itsaxiom/dream-factory), a personal multi-agent software studio that manages 5+ creative projects from a single terminal. The patterns that made Dream Factory productive — persistent context, department dispatch, engine offloading, milestone-linked accounting — were generalized into this distributable plugin.
 
 ## License
 
