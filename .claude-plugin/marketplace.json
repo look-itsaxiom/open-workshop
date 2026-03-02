@@ -11,13 +11,12 @@
     {
       "name": "open-workshop",
       "description": "Persistent project management, department dispatch, engine offloading, and ROI tracking",
-      "version": "0.1.0",
-      "author": {
-        "name": "Chase Skibeness",
-        "email": "chase@skibeness.com"
+      "category": "productivity",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/look-itsaxiom/open-workshop.git"
       },
-      "source": ".",
-      "category": "productivity"
+      "homepage": "https://look-itsaxiom.github.io/open-workshop/"
     }
   ]
 }
