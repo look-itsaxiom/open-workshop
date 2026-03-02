@@ -1,13 +1,23 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "open-workshop-marketplace",
-  "owner": "Chase Skibeness",
+  "version": "0.1.0",
+  "description": "A self-organizing AI workshop plugin for Claude Code",
+  "owner": {
+    "name": "Chase Skibeness",
+    "email": "chase@skibeness.com"
+  },
   "plugins": [
     {
       "name": "open-workshop",
-      "source": {
-        "type": "github",
-        "url": "https://github.com/look-itsaxiom/open-workshop"
-      }
+      "description": "Persistent project management, department dispatch, engine offloading, and ROI tracking",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chase Skibeness",
+        "email": "chase@skibeness.com"
+      },
+      "source": ".",
+      "category": "productivity"
     }
   ]
 }
