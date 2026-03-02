@@ -25,10 +25,10 @@ Open Workshop gives you a persistent, self-growing studio:
 
 ```bash
 # Add the marketplace
-claude /plugin marketplace add https://raw.githubusercontent.com/look-itsaxiom/open-workshop/main/marketplace.json
+/plugin marketplace add look-itsaxiom/open-workshop
 
 # Install the plugin
-claude /plugin install open-workshop
+/plugin install open-workshop@look-itsaxiom-open-workshop
 ```
 
 ### First Run
