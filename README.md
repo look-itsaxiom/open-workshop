@@ -39,7 +39,7 @@ Start a Claude Code session. The plugin detects it's your first time and walks y
 
 | Command | What it does |
 |---------|-------------|
-| `/status` | Show your workshop dashboard |
+| `/dashboard` | Show your workshop dashboard |
 | `/focus <project>` | Deep-dive into a specific project |
 | `/new-project` | Start a new project from scratch |
 | `/onboard <path>` | Bring an existing repo into the workshop |

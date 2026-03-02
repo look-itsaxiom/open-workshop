@@ -1,5 +1,5 @@
 ---
-name: status
+name: dashboard
 description: Display the workshop dashboard with project status overview
 ---
 
