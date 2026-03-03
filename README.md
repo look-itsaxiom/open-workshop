@@ -94,7 +94,7 @@ All your data lives in `~/.open-workshop/`. The plugin itself is stateless — r
 
 ## Origin
 
-Open Workshop was extracted from [Dream Factory](https://github.com/look-itsaxiom/dream-factory), a personal multi-agent software studio that manages 5+ creative projects from a single terminal. The patterns that made Dream Factory productive — persistent context, department dispatch, engine offloading, milestone-linked accounting — were generalized into this distributable plugin.
+Open Workshop was extracted from [Dream Factory](https://chase.skibeness.com/projects/dream-factory), a personal multi-agent software studio that manages 5+ creative projects from a single terminal. The patterns that made Dream Factory productive — persistent context, department dispatch, engine offloading, milestone-linked accounting — were generalized into this distributable plugin.
 
 ## License
 
