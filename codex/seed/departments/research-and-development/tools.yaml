@@ -1,0 +1,15 @@
+# Research & Development — Tool Catalog
+# These are reference tools R&D knows about. Additive, never restrictive.
+
+tools:
+  - name: web-search
+    purpose: Research tools, libraries, best practices, current state of the art
+    notes: "Use WebSearch for up-to-date information beyond training data"
+
+  - name: web-fetch
+    purpose: Read documentation, guides, API references, and tutorials
+    notes: "Use WebFetch to read specific URLs found via search"
+
+  - name: codebase-exploration
+    purpose: Understand project structure, patterns, and conventions
+    notes: "Use Glob, Grep, Read tools to explore codebases"

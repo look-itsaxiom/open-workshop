@@ -1,0 +1,14 @@
+description = "Display the workshop dashboard with project status overview"
+prompt = """
+Display the workshop dashboard.
+
+Read the project manifest and status files, then present the dashboard using the workshop-dashboard skill format.
+
+Steps:
+1. Read `~/.open-workshop/config.yaml` for settings
+2. Read `~/.open-workshop/projects/_manifest.yaml` for the project list
+3. For each active project, read `~/.open-workshop/projects/<name>/status.md` and the summary from `~/.open-workshop/projects/<name>/ledger.yaml`
+4. Present the dashboard in the format defined by the workshop-dashboard skill
+5. For backlog projects, show only name and last-touched date
+6. End with "What are we working on today?" or similar prompt for direction
+"""
