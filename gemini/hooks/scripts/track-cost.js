@@ -12,30 +12,26 @@ const path = require('path');
 const readline = require('readline');
 const os = require('os');
 
-// Anthropic pricing per million tokens (USD)
+// Gemini pricing per million tokens (USD)
 const PRICING = {
-  opus:   { input: 15.00, output: 75.00, cache_write: 18.75, cache_read: 1.50 },
-  sonnet: { input: 3.00,  output: 15.00, cache_write: 3.75,  cache_read: 0.30 },
-  haiku:  { input: 0.80,  output: 4.00,  cache_write: 1.00,  cache_read: 0.08 }
+  pro: { input: 1.25, output: 5.00 },
+  flash: { input: 0.075, output: 0.30 }
 };
 
 function getTier(modelId) {
-  if (!modelId) return 'sonnet';
+  if (!modelId) return 'pro';
   const id = modelId.toLowerCase();
-  if (id.includes('opus'))  return 'opus';
-  if (id.includes('haiku')) return 'haiku';
-  return 'sonnet';
+  if (id.includes('flash')) return 'flash';
+  return 'pro';
 }
 
 function calculateCost(tokens, rates) {
   return (tokens.input * rates.input / 1_000_000)
-       + (tokens.output * rates.output / 1_000_000)
-       + (tokens.cache_creation * rates.cache_write / 1_000_000)
-       + (tokens.cache_read * rates.cache_read / 1_000_000);
+       + (tokens.output * rates.output / 1_000_000);
 }
 
 async function parseTranscript(filePath) {
-  const tokens = { input: 0, output: 0, cache_creation: 0, cache_read: 0 };
+  const tokens = { input: 0, output: 0 };
   let model = null;
   let turnCount = 0;
 
@@ -48,12 +44,10 @@ async function parseTranscript(filePath) {
     if (!line.trim()) continue;
     try {
       const record = JSON.parse(line);
-      if (record.type === 'assistant' && record.message?.usage) {
-        const u = record.message.usage;
-        tokens.input += u.input_tokens || 0;
-        tokens.output += u.output_tokens || 0;
-        tokens.cache_creation += u.cache_creation_input_tokens || 0;
-        tokens.cache_read += u.cache_read_input_tokens || 0;
+      if (record.type === 'assistant' && record.message?.usageMetadata) {
+        const u = record.message.usageMetadata;
+        tokens.input += u.promptTokenCount || 0;
+        tokens.output += u.candidatesTokenCount || 0;
         turnCount++;
         if (!model && record.message.model) {
           model = record.message.model;

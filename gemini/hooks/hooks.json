@@ -1,26 +1,28 @@
 {
-  "SessionStart": [
-    {
-      "hooks": [
-        {
-          "name": "open-workshop-start",
-          "type": "command",
-          "command": "bash ${extensionPath}/hooks/scripts/session-start.sh"
-        }
-      ]
-    }
-  ],
-  "AfterTool": [
-    {
-      "matcher": "codebase_investigator|cli_help|browser_agent|researcher|generalist_agent",
-      "hooks": [
-        {
-          "name": "open-workshop-track-cost",
-          "type": "command",
-          "command": "node ${extensionPath}/hooks/scripts/track-cost.js",
-          "async": true
-        }
-      ]
-    }
-  ]
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "name": "open-workshop-start",
+            "type": "command",
+            "command": "node ${extensionPath}${/}hooks${/}scripts${/}session-start.js"
+          }
+        ]
+      }
+    ],
+    "AfterTool": [
+      {
+        "matcher": "codebase_investigator|cli_help|browser_agent|researcher|generalist_agent",
+        "hooks": [
+          {
+            "name": "open-workshop-track-cost",
+            "type": "command",
+            "command": "node ${extensionPath}${/}hooks${/}scripts${/}track-cost.js",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
 }
