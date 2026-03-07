@@ -6,6 +6,7 @@ PLUGIN_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 DATA_HOME="$HOME/.open-workshop"
 CONFIG="$DATA_HOME/config.yaml"
 MANIFEST="$DATA_HOME/projects/_manifest.yaml"
+LOCAL_PLUGIN="$DATA_HOME/.claude-plugin/plugin.json"
 
 TMPFILE=$(mktemp)
 trap "rm -f $TMPFILE" EXIT
@@ -38,6 +39,26 @@ fi
 WORKSHOP_NAME=$(grep 'workshop_name:' "$CONFIG" 2>/dev/null | sed 's/workshop_name:[[:space:]]*//' | sed 's/^"//' | sed 's/"$//')
 if [ -z "$WORKSHOP_NAME" ]; then
   WORKSHOP_NAME="Open Workshop"
+fi
+
+# ── Local Plugin Health Check ────────────────────────────────────────
+if [ ! -f "$LOCAL_PLUGIN" ]; then
+  cat >> "$TMPFILE" << 'HEAL'
+
+LOCAL PLUGIN MISSING: The learned-capabilities plugin at ~/.open-workshop/.claude-plugin/plugin.json does not exist. Run the setup wizard to create it, or create it manually:
+  mkdir -p ~/.open-workshop/.claude-plugin
+  Then create plugin.json and marketplace.json per the setup-wizard skill.
+
+HEAL
+elif grep -q 'local_plugin_installed:.*false' "$CONFIG" 2>/dev/null || ! grep -q 'local_plugin_installed' "$CONFIG" 2>/dev/null; then
+  cat >> "$TMPFILE" << 'HEAL'
+
+LOCAL PLUGIN NOT REGISTERED: The local plugin exists but is not registered with Claude Code. Ask the user to run:
+  /plugin marketplace add ~/.open-workshop
+  /plugin install open-workshop-local@open-workshop-local-marketplace
+Then set local_plugin_installed: true in ~/.open-workshop/config.yaml.
+
+HEAL
 fi
 
 cat >> "$TMPFILE" << HEADER
