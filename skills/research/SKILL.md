@@ -69,11 +69,7 @@ This step is mandatory. Every finding becomes a skill.
 
 ### 0. Verify local plugin exists
 
-Check that `~/.open-workshop/.claude-plugin/plugin.json` exists. If it doesn't, tell the user:
-
-> "Your workshop needs the local plugin set up before R&D can compile skills. Run the setup wizard to complete a quick upgrade."
-
-Then invoke the setup-wizard skill. Do not proceed with compilation until the local plugin is bootstrapped.
+Check that `~/.open-workshop/.claude-plugin/plugin.json` exists and that `~/.open-workshop/skills/` exists. If either is missing, let the user know: the local plugin needs a quick setup before skills can be compiled. Offer to run the setup wizard now, or create the directory manually if only `skills/` is missing. Don't block the research — just defer the compile step until the plugin is ready.
 
 ### 1. Choose a skill name
 

@@ -38,10 +38,9 @@ Present using this structure. If the local plugin is missing or not registered (
   [WORKSHOP NAME] — Dashboard
 ═══════════════════════════════════════════════════
 
-!! UPGRADE AVAILABLE !!
-Your workshop needs a one-time upgrade to enable
-auto-triggering R&D skills. Run the setup wizard
-to complete the upgrade (2 questions, ~1 minute).
+Note: Your workshop can now compile R&D findings
+into auto-triggering skills. Run the setup wizard
+when you're ready to enable this (~1 min).
 ───────────────────────────────────────────────────
 
 ACTIVE PROJECTS (N/limit)
