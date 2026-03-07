@@ -14,6 +14,31 @@ description: >
 
 - Triggered automatically on first run (SessionStart hook detects missing config)
 - When user wants to reconfigure: "reset workshop", "run setup again"
+- When upgrading an existing workshop that lacks the local plugin (SessionStart hook detects missing `.claude-plugin/plugin.json`)
+
+## Upgrade Detection
+
+Before asking questions, check if this is an upgrade (existing config, missing local plugin):
+
+```bash
+# Existing workshop?
+test -f ~/.open-workshop/config.yaml
+
+# Missing local plugin?
+test ! -f ~/.open-workshop/.claude-plugin/plugin.json
+```
+
+**If both are true**, this is an upgrade. Skip Questions 1-4 (answers already exist in config.yaml) and:
+
+1. Tell the user: "Your workshop is being upgraded to support auto-triggering skills. I just need to ask a couple of new questions."
+2. Ask only **Question 5** (Git Backing) and **Question 6** (Dispatch Preferences)
+3. Add the new config fields (`default_dispatch_mode`, `preferred_terminal`, `local_plugin_installed`) to the existing `config.yaml` — don't overwrite it
+4. Create the **Local Plugin Bootstrap** files (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `skills/` directory)
+5. Run the plugin registration steps
+6. If git backing was chosen and `~/.open-workshop/.git` doesn't exist, run `git init`
+7. Tell the user: "Upgrade complete. Your workshop now supports R&D-compiled skills. Use `/compile-findings all` to convert your existing research into auto-triggering skills."
+
+**If config doesn't exist**, proceed with the full setup below.
 
 ## The Process
 

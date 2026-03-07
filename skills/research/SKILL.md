@@ -76,8 +76,10 @@ Use kebab-case. Name it for what it does, not what you researched.
 ### 2. Check for existing skills
 
 ```bash
-ls ~/.open-workshop/skills/
+ls ~/.open-workshop/skills/ 2>/dev/null
 ```
+
+If the directory doesn't exist, create it: `mkdir -p ~/.open-workshop/skills/`
 
 If a related skill already exists, update it instead of creating a new one.
 

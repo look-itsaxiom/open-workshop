@@ -45,9 +45,7 @@ fi
 if [ ! -f "$LOCAL_PLUGIN" ]; then
   cat >> "$TMPFILE" << 'HEAL'
 
-LOCAL PLUGIN MISSING: The learned-capabilities plugin at ~/.open-workshop/.claude-plugin/plugin.json does not exist. Run the setup wizard to create it, or create it manually:
-  mkdir -p ~/.open-workshop/.claude-plugin
-  Then create plugin.json and marketplace.json per the setup-wizard skill.
+LOCAL PLUGIN UPGRADE NEEDED: This workshop was created before the local plugin system. Invoke the setup-wizard skill — it will detect the existing config and run a quick upgrade (2 questions + plugin registration). The user's existing config, projects, and departments are preserved.
 
 HEAL
 elif grep -q 'local_plugin_installed:.*false' "$CONFIG" 2>/dev/null || ! grep -q 'local_plugin_installed' "$CONFIG" 2>/dev/null; then

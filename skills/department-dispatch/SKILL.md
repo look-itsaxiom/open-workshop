@@ -18,8 +18,9 @@ Every work request follows this flow:
 
 ### 1. Check for Matching Skills
 
-Before dispatching, scan `~/.open-workshop/skills/` for auto-triggering skills that match the task. These are R&D-compiled capabilities.
+Before dispatching, check if `~/.open-workshop/skills/` exists and scan for auto-triggering skills that match the task. These are R&D-compiled capabilities.
 
+- If the skills directory doesn't exist or is empty, skip this step and proceed to department dispatch.
 - If one skill clearly matches, use it and tell the user.
 - If multiple skills match and intent is ambiguous, ask: "I found skills for X and Y. Which applies here?"
 - If complementary skills match (e.g., generation + post-processing), compose them.
