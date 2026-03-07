@@ -93,7 +93,7 @@ execution_mode: <answer>  # sub-agents or agent-teams
 default_dispatch_mode: <answer>  # smart, sub-agents, agent-teams, or terminal
 preferred_terminal: null          # null = ask on first use
 default_teammate_model: sonnet
-local_plugin_installed: true
+local_plugin_installed: false    # set to true after plugin registration
 ```
 
 ### `~/.open-workshop/projects/_manifest.yaml`
@@ -182,7 +182,7 @@ After all files are created, run these commands to register and install:
 1. `/plugin marketplace add ~/.open-workshop`
 2. `/plugin install open-workshop-local@open-workshop-local-marketplace`
 
-The `local_plugin_installed: true` flag in config.yaml confirms this step completed.
+After successful registration, set `local_plugin_installed: true` in config.yaml.
 
 ### Git Init (if requested)
 
