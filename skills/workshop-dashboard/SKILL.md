@@ -20,18 +20,17 @@ description: >
 
 ### Reading Project Data
 
-1. Read `~/.open-workshop/config.yaml` for `active_project_limit` and `workshop_name`
+1. Read `~/.open-workshop/config.yaml` for `active_project_limit`, `workshop_name`, and `local_plugin_installed`
 2. Read `~/.open-workshop/projects/_manifest.yaml` for the project list
 3. For each **active** project, read `~/.open-workshop/projects/<name>/status.md`
 4. For each **active** project with a ledger, read the `summary` section of `~/.open-workshop/projects/<name>/ledger.yaml`
-
-5. Check if `~/.open-workshop/.claude-plugin/plugin.json` exists and if `local_plugin_installed` is `true` in config
+5. Check if `~/.open-workshop/.claude-plugin/plugin.json` exists (use Bash: `test -f ~/.open-workshop/.claude-plugin/plugin.json && echo exists || echo missing`)
 
 Do NOT read backlog project details unless the user asks. Do NOT read project repos on startup.
 
 ### Dashboard Format
 
-Present using this structure. If the local plugin is missing or not registered (from step 5), show the notice block immediately after the header:
+**IMPORTANT:** If step 5 returned "missing" OR `local_plugin_installed` is not `true` in config, you MUST include the note line shown below between the header and the project list. Do not skip this.
 
 ```
 ═══════════════════════════════════════════════════
@@ -41,7 +40,6 @@ Present using this structure. If the local plugin is missing or not registered (
 Note: Your workshop can now compile R&D findings
 into auto-triggering skills. Run the setup wizard
 when you're ready to enable this (~1 min).
-───────────────────────────────────────────────────
 
 ACTIVE PROJECTS (N/limit)
 ───────────────────────────────────────────────────
