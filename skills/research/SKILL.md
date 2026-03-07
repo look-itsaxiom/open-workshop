@@ -67,6 +67,14 @@ When the user needs a new specialist area:
 
 This step is mandatory. Every finding becomes a skill.
 
+### 0. Verify local plugin exists
+
+Check that `~/.open-workshop/.claude-plugin/plugin.json` exists. If it doesn't, tell the user:
+
+> "Your workshop needs the local plugin set up before R&D can compile skills. Run the setup wizard to complete a quick upgrade."
+
+Then invoke the setup-wizard skill. Do not proceed with compilation until the local plugin is bootstrapped.
+
 ### 1. Choose a skill name
 
 Use kebab-case. Name it for what it does, not what you researched.

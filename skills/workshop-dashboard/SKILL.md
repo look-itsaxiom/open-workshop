@@ -25,16 +25,24 @@ description: >
 3. For each **active** project, read `~/.open-workshop/projects/<name>/status.md`
 4. For each **active** project with a ledger, read the `summary` section of `~/.open-workshop/projects/<name>/ledger.yaml`
 
+5. Check if `~/.open-workshop/.claude-plugin/plugin.json` exists and if `local_plugin_installed` is `true` in config
+
 Do NOT read backlog project details unless the user asks. Do NOT read project repos on startup.
 
 ### Dashboard Format
 
-Present using this structure:
+Present using this structure. If the local plugin is missing or not registered (from step 5), show the notice block immediately after the header:
 
 ```
 ═══════════════════════════════════════════════════
   [WORKSHOP NAME] — Dashboard
 ═══════════════════════════════════════════════════
+
+!! UPGRADE AVAILABLE !!
+Your workshop needs a one-time upgrade to enable
+auto-triggering R&D skills. Run the setup wizard
+to complete the upgrade (2 questions, ~1 minute).
+───────────────────────────────────────────────────
 
 ACTIVE PROJECTS (N/limit)
 ───────────────────────────────────────────────────
